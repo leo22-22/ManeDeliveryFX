@@ -49,8 +49,14 @@ public class TabelaCategoriaController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setContentText("Apagar a categoria " + categoria.getNome() + "?");
         if (alert.showAndWait().get() == ButtonType.OK) {
-            new CategoriaDal().apagar(categoria);
-            carregarTabela();
+            if (new CategoriaDal().apagar(categoria))
+                carregarTabela();
+            else {
+                Alert erro = new Alert(Alert.AlertType.ERROR);
+                erro.setHeaderText("Não foi possível apagar");
+                erro.setContentText("Existem produtos usando este registro.");
+                erro.showAndWait();
+            }
         }
     }
 

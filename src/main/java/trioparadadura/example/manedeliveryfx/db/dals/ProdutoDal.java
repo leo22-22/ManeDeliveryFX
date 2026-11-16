@@ -35,7 +35,7 @@ public class ProdutoDal implements IDAL<Produto> {
         sql=sql.replace("$4",""+entidade.getEstoque());
         sql=sql.replace("$5",""+entidade.getMarca().getId());
         sql=sql.replace("$6",""+entidade.getId());
-        System.out.println(sql);
+        sql=sql.replace("$7",""+entidade.getVolume());
         return SingletonDB.getConexao().manipular(sql);
     }
 
@@ -66,6 +66,7 @@ public class ProdutoDal implements IDAL<Produto> {
         String sql="SELECT * FROM produto";
         if(!filtro.isEmpty())
             sql+=" WHERE "+filtro;
+        sql+=" ORDER BY pro_id";
         ResultSet rs=SingletonDB.getConexao().consultar(sql);
         try {
             while (rs.next()) {

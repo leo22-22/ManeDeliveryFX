@@ -36,8 +36,8 @@ public class PrincipalController {
     }
 
     @FXML
-    void onMarca(ActionEvent event) {
-
+    void onMarca(ActionEvent event) throws Exception {
+        abrirJanela("tabela-marca-view.fxml", "Marcas Cadastradas");
     }
 
     @FXML

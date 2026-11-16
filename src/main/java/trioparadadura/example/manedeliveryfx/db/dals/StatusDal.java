@@ -61,6 +61,7 @@ public class StatusDal implements IDAL<Status> {
         if (!filtro.isEmpty()) {
             sql += " WHERE " + filtro;
         }
+        sql+=" ORDER BY st_id";
         ResultSet rs = SingletonDB.getConexao().consultar(sql);
         try {
             while (rs.next()) {

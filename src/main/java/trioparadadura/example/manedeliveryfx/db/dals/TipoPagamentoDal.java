@@ -52,6 +52,7 @@ public class TipoPagamentoDal implements IDAL<TipoPagamento> {
         if (!filtro.isEmpty()) {
             sql += " WHERE " + filtro;
         }
+        sql+=" ORDER BY tpg_id";
         ResultSet rs = SingletonDB.getConexao().consultar(sql);
         try {
             while (rs.next()) {

@@ -48,6 +48,7 @@ public class MarcaDal implements IDAL<Marca> {
         String sql="SELECT * FROM marca";
         if(!filtro.isEmpty())
             sql+=" WHERE "+filtro;
+        sql+=" ORDER BY mar_id";
         ResultSet rs=SingletonDB.getConexao().consultar(sql);
         try {
             while (rs.next()) {

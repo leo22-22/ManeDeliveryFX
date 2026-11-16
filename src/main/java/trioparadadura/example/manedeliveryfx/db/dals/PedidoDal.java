@@ -113,7 +113,7 @@ public class PedidoDal implements IDAL<Pedido> {
         if (!filtro.isEmpty()) {
             sql += " WHERE " + filtro;
         }
-        sql+=" order by ped_id";
+        sql+=" ORDER BY ped_id";
         ResultSet rs = SingletonDB.getConexao().consultar(sql);
         try {
             while (rs.next()) {

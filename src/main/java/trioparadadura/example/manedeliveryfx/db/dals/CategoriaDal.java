@@ -51,6 +51,7 @@ public class CategoriaDal implements IDAL<Categoria> {
         String sql="SELECT * FROM categoria";
         if(!filtro.isEmpty())
             sql+=" WHERE "+filtro;
+        sql+=" ORDER BY cat_id";
         ResultSet rs=SingletonDB.getConexao().consultar(sql);
         try {
             while (rs.next()) {
