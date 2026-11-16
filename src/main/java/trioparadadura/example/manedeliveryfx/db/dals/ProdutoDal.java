@@ -13,12 +13,13 @@ import java.util.Locale;
 public class ProdutoDal implements IDAL<Produto> {
     @Override
     public boolean gravar(Produto entidade) {
-        String sql="INSERT INTO produto VALUES (default,'$1',$2,$3,$5)";
+        String sql="INSERT INTO produto (pro_nome, pro_preco, cat_id, pro_estoque, mar_id, pro_volume) VALUES ('$1',$2,$3,$4,$5,$6)";
         sql=sql.replace("$1",entidade.getNome());
         sql=sql.replace("$2",String.format(Locale.US,"%.2f",entidade.getPreco()));
         sql=sql.replace("$3",""+entidade.getCategoria().getId());
         sql=sql.replace("$4",""+entidade.getEstoque());
         sql=sql.replace("$5",""+entidade.getMarca().getId());
+        sql=sql.replace("$6",""+entidade.getVolume());
         return SingletonDB.getConexao().manipular(sql);
     }
 
@@ -26,7 +27,7 @@ public class ProdutoDal implements IDAL<Produto> {
     public boolean alterar(Produto entidade) {
         String sql= """
                 UPDATE produto
-                SET pro_nome='$1', pro_preco=$2, cat_id=$3, pro_estoque=$4, mar_id=$5
+                SET pro_nome='$1', pro_preco=$2, cat_id=$3, pro_estoque=$4, mar_id=$5, pro_volume=$7
                 WHERE pro_id=$6""";
         sql=sql.replace("$1",entidade.getNome());
         sql=sql.replace("$2",String.format(Locale.US,"%.2f",entidade.getPreco()));
@@ -51,7 +52,7 @@ public class ProdutoDal implements IDAL<Produto> {
         try {
             if (rs.next()) {
                 produto = new Produto(rs.getInt("pro_id"), rs.getString("pro_nome"),
-                        rs.getDouble("pro_preco"), rs.getInt("pro_estoque"),
+                        rs.getDouble("pro_preco"), rs.getInt("pro_volume"), rs.getInt("pro_estoque"),
                         new CategoriaDal().get(rs.getInt("cat_id")),
                         new MarcaDal().get(rs.getInt("mar_id")));
             }
@@ -69,7 +70,7 @@ public class ProdutoDal implements IDAL<Produto> {
         try {
             while (rs.next()) {
                 Produto produto = new Produto(rs.getInt("pro_id"), rs.getString("pro_nome"),
-                        rs.getDouble("pro_preco"), rs.getInt("pro_estoque"),
+                        rs.getDouble("pro_preco"), rs.getInt("pro_volume"), rs.getInt("pro_estoque"),
                         new CategoriaDal().get(rs.getInt("cat_id")),
                         new MarcaDal().get(rs.getInt("mar_id")));
 

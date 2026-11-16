@@ -41,6 +41,9 @@ public class TabelaProdutoController implements Initializable {
     private TableView<Produto> tableView;
 
     @FXML
+    private TableColumn<Produto, Integer> coVolume;
+
+    @FXML
     void onAlterarProduto(ActionEvent event) {
 
     }
@@ -63,6 +66,7 @@ public class TabelaProdutoController implements Initializable {
         coEstoque.setCellValueFactory(new PropertyValueFactory<>("estoque"));
         coMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
         coPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+        coVolume.setCellValueFactory(new PropertyValueFactory<>("volume"));
         carregarTabela();
     }
 

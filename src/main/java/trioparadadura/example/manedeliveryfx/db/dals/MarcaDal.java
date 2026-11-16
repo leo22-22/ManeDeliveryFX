@@ -18,7 +18,7 @@ public class MarcaDal implements IDAL<Marca> {
 
     @Override
     public boolean alterar(Marca entidade) {
-        String sql="UPDATE marca SET cat_nome='$1' WHERE cat_id=$2";
+        String sql="UPDATE marca SET mar_nome='$1' WHERE mar_id=$2";
         sql=sql.replace("$1", entidade.getNome());
         sql=sql.replace("$2", ""+entidade.getId());
         return SingletonDB.getConexao().manipular(sql);

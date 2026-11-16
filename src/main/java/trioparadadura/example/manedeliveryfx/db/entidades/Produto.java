@@ -9,22 +9,24 @@ public class Produto {
     private int estoque;
     private Categoria categoria;
     private Marca marca;
+    private int volume;
 
-    public Produto(int id, String nome, double preco, int estoque, Categoria categoria, Marca marca) {
+    public Produto(int id, String nome, double preco,int volume, int estoque, Categoria categoria, Marca marca) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.estoque = estoque;
         this.categoria = categoria;
         this.marca = marca;
+        this.volume = volume;
     }
 
-    public Produto(String nome, double preco, int estoque, Categoria categoria, Marca marca) {
-        this(0,nome,preco,estoque,categoria,marca);
+    public Produto(String nome, double preco, int estoque, Categoria categoria, Marca marca, int volume) {
+        this(0,nome,preco,volume,estoque,categoria,marca);
     }
 
     public Produto() {
-        this(0,"",0,0,null,null);
+        this(0,"",0,0,0,null,null);
     }
 
     public int getId() {
@@ -73,5 +75,13 @@ public class Produto {
 
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
     }
 }

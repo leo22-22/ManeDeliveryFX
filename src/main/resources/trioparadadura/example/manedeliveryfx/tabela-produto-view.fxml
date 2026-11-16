@@ -38,6 +38,7 @@
                 <TableColumn fx:id="coId" maxWidth="50.0" prefWidth="50.0" text="ID" />
                 <TableColumn fx:id="coNome" prefWidth="75.0" text="NOME" />
                 <TableColumn fx:id="coPreco" maxWidth="75.0" prefWidth="75.0" text="PRECO" />
+                <TableColumn fx:id="coVolume" maxWidth="90.0" prefWidth="90.0" text="VOLUME (ml)" />
                 <TableColumn fx:id="coCategoria" maxWidth="100.0" prefWidth="100.0" text="CATEGORIA" />
                 <TableColumn fx:id="coMarca" maxWidth="120.0" prefWidth="120.0" text="MARCA" />
                 <TableColumn fx:id="coEstoque" maxWidth="75.0" prefWidth="75.0" text="ESTOQUE" />
