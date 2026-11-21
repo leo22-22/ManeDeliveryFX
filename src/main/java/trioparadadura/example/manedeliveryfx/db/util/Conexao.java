@@ -30,11 +30,15 @@ public class Conexao {
         return erro;
     }
 
+    public Connection getConnect() {
+        return connect;
+    }
+
     public boolean getEstadoConexao() {
         return (connect != null);
     }
 
-    public boolean manipular(String sql) // inserir, alterar,excluir
+    public boolean manipular(String sql)
     {
         boolean executou = false;
         try {
@@ -49,7 +53,7 @@ public class Conexao {
         return executou;
     }
 
-    public int inserir(String sql) // inserir, alterar,excluir
+    public int inserir(String sql)
     {
         int id=-1;
         try {
@@ -74,10 +78,7 @@ public class Conexao {
         ResultSet rs = null;
         try {
             Statement statement = connect.createStatement();
-            //ResultSet.TYPE_SCROLL_INSENSITIVE,
-            //ResultSet.CONCUR_READ_ONLY);
             rs = statement.executeQuery(sql);
-            //statement.close();
         } catch (SQLException sqlex) {
             erro = "Erro: " + sqlex.toString();
             rs = null;

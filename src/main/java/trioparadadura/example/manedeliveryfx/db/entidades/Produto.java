@@ -84,4 +84,10 @@ public class Produto {
     public void setVolume(int volume) {
         this.volume = volume;
     }
+
+    @Override
+    public String toString() {
+        return String.format(java.util.Locale.of("pt", "BR"), "%s - %s  |  R$ %.2f  |  estoque: %d",
+                nome, marca, preco, estoque);
+    }
 }

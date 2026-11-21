@@ -13,8 +13,8 @@ public class StatusDal implements IDAL<Status> {
     @Override
     public boolean gravar(Status entidade) {
         String sql = "INSERT INTO status VALUES (default, '$1', '$2', $3)";
-        sql = sql.replace("$1", entidade.getDescricao());
-        sql = sql.replace("$2", entidade.getObservacao());
+        sql = sql.replace("$1", entidade.getDescricao().replace("'", "''"));
+        sql = sql.replace("$2", entidade.getObservacao().replace("'", "''"));
         sql = sql.replace("$3", entidade.isSucesso() ? "true" : "false");
         return SingletonDB.getConexao().manipular(sql);
     }
@@ -22,8 +22,8 @@ public class StatusDal implements IDAL<Status> {
     @Override
     public boolean alterar(Status entidade) {
         String sql = "UPDATE status SET st_descr='$1', st_obs='$2', st_sucesso=$3 WHERE st_id=$4";
-        sql = sql.replace("$1", entidade.getDescricao());
-        sql = sql.replace("$2", entidade.getObservacao());
+        sql = sql.replace("$1", entidade.getDescricao().replace("'", "''"));
+        sql = sql.replace("$2", entidade.getObservacao().replace("'", "''"));
         sql = sql.replace("$3", entidade.isSucesso() ? "true" : "false");
         sql = sql.replace("$4", String.valueOf(entidade.getId()));
         return SingletonDB.getConexao().manipular(sql);

@@ -14,7 +14,7 @@ public class ManeDeliveryApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         if(SingletonDB.conectar()){
-            FXMLLoader fxmlLoader = new FXMLLoader(ManeDeliveryApplication.class.getResource("principal-view.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(ManeDeliveryApplication.class.getResource("view/principal-view.fxml"));
             Scene scene = new Scene(fxmlLoader.load());
             stage.setTitle("ManeDeliveryFX");
             stage.setScene(scene);

@@ -13,14 +13,14 @@ public class TipoPagamentoDal implements IDAL<TipoPagamento> {
     @Override
     public boolean gravar(TipoPagamento entidade) {
         String sql = "INSERT INTO tipo_pagamento VALUES (default, '$1')";
-        sql = sql.replace("$1", entidade.getNome());
+        sql = sql.replace("$1", entidade.getNome().replace("'", "''"));
         return SingletonDB.getConexao().manipular(sql);
     }
 
     @Override
     public boolean alterar(TipoPagamento entidade) {
         String sql = "UPDATE tipo_pagamento SET tpg_nome='$1' WHERE tpg_id=$2";
-        sql = sql.replace("$1", entidade.getNome());
+        sql = sql.replace("$1", entidade.getNome().replace("'", "''"));
         sql = sql.replace("$2", String.valueOf(entidade.getId()));
         return SingletonDB.getConexao().manipular(sql);
     }

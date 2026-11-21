@@ -14,7 +14,7 @@ public class ProdutoDal implements IDAL<Produto> {
     @Override
     public boolean gravar(Produto entidade) {
         String sql="INSERT INTO produto (pro_nome, pro_preco, cat_id, pro_estoque, mar_id, pro_volume) VALUES ('$1',$2,$3,$4,$5,$6)";
-        sql=sql.replace("$1",entidade.getNome());
+        sql=sql.replace("$1",entidade.getNome().replace("'", "''"));
         sql=sql.replace("$2",String.format(Locale.US,"%.2f",entidade.getPreco()));
         sql=sql.replace("$3",""+entidade.getCategoria().getId());
         sql=sql.replace("$4",""+entidade.getEstoque());
@@ -29,7 +29,7 @@ public class ProdutoDal implements IDAL<Produto> {
                 UPDATE produto
                 SET pro_nome='$1', pro_preco=$2, cat_id=$3, pro_estoque=$4, mar_id=$5, pro_volume=$7
                 WHERE pro_id=$6""";
-        sql=sql.replace("$1",entidade.getNome());
+        sql=sql.replace("$1",entidade.getNome().replace("'", "''"));
         sql=sql.replace("$2",String.format(Locale.US,"%.2f",entidade.getPreco()));
         sql=sql.replace("$3",""+entidade.getCategoria().getId());
         sql=sql.replace("$4",""+entidade.getEstoque());

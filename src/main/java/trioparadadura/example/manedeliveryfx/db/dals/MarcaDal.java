@@ -12,14 +12,14 @@ public class MarcaDal implements IDAL<Marca> {
     @Override
     public boolean gravar(Marca entidade) {
         String sql="INSERT INTO marca VALUES (default,'$1')";
-        sql=sql.replace("$1", entidade.getNome());
+        sql=sql.replace("$1", entidade.getNome().replace("'", "''"));
         return SingletonDB.getConexao().manipular(sql);
     }
 
     @Override
     public boolean alterar(Marca entidade) {
         String sql="UPDATE marca SET mar_nome='$1' WHERE mar_id=$2";
-        sql=sql.replace("$1", entidade.getNome());
+        sql=sql.replace("$1", entidade.getNome().replace("'", "''"));
         sql=sql.replace("$2", ""+entidade.getId());
         return SingletonDB.getConexao().manipular(sql);
     }

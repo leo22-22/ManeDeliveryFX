@@ -15,14 +15,14 @@ public class CategoriaDal implements IDAL<Categoria> {
     @Override
     public boolean gravar(Categoria entidade) {
         String sql="INSERT INTO categoria VALUES (default,'$1')";
-        sql=sql.replace("$1", entidade.getNome());
+        sql=sql.replace("$1", entidade.getNome().replace("'", "''"));
         return SingletonDB.getConexao().manipular(sql);
     }
 
     @Override
     public boolean alterar(Categoria entidade) {
         String sql="UPDATE categoria SET cat_nome='$1' WHERE cat_id=$2";
-        sql=sql.replace("$1", entidade.getNome());
+        sql=sql.replace("$1", entidade.getNome().replace("'", "''"));
         sql=sql.replace("$2", ""+entidade.getId());
         return SingletonDB.getConexao().manipular(sql);
     }
